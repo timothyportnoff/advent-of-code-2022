@@ -20,24 +20,17 @@ bool is_complete_overlap (int n1, int n2, int n3, int n4) {
 }
 
 bool is_partial_overlap (int n1, int n2, int n3, int n4) {
-	//if first set is within second set
-	if (n1 >= n3 && n1 <= n4) {
-		//cout << n1 << " AND " << n2 << " WITHIN " << n3 << " AND " << n4 << endl;
-		return 1;
-	}
-	//if second set is within first set
-	if (n2 >= n3 && n2 <= n4) {
-		//cout << n3 << " AND " << n4 << " WITHIN " << n1 << " AND " << n2 << endl;
-		return 1;
-	}
+	if (n1 >= n3 && n1 <= n4) return 1;
+	if (n2 >= n3 && n2 <= n4) return 1;
+	if (n3 >= n1 && n3 <= n2) return 1;
+	if (n4 >= n1 && n4 <= n2) return 1;
 	return 0;
 }
 
 int main(int argc, char** argv) {
 	cout << "Day 4: Camp Cleanup" << endl;
 	string s1, s2, s3, s4;
-	int n1, n2, n3, n4;
-	int partial_overlap = 0, complete_overlap = 0;
+	int n1, n2, n3, n4, partial_overlap = 0, complete_overlap = 0;
 	fstream ins("input");
 	while (ins) {
 		getline(ins, s1, '-');
