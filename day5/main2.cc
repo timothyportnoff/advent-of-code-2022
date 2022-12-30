@@ -69,10 +69,17 @@ int main(int argc, char** argv) {
 		if (!ins) break;
 		ins >> s >> to;//Read TO
 		if (!ins) break;
+
+		std::deque<char> ordered_stack;
 		for (int i = 0; i < count; i++) {
 			char crate = crates[from-1].front();
-			crates[to-1].push_front(crate);
+			ordered_stack.push_back(crate);
 			crates[from-1].pop_front();
+		}
+		for (int i = 0; i < count; i++) {
+			char crate = ordered_stack.back();
+			crates[to-1].push_front(crate);
+			ordered_stack.pop_back();
 		}
 	}
 
